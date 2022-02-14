@@ -1,7 +1,7 @@
 const BananaStandardToken = artifacts.require("BananaStandardToken");
 
 contract("BananaStandardToken", (accounts) => {
-  it("...should store the value 89.", async function () {
+  it("execute ERC20 tranfer", async function () {
     const bananaStandardToken = await BananaStandardToken.deployed();
     const amount = 100;
     const toAccount = accounts[1];

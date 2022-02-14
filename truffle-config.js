@@ -17,6 +17,7 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
+require("ts-node").register({ files: true });
 
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
 //
