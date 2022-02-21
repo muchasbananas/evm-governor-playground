@@ -7,9 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "test": "truffle test",
     "generate-types": "typechain --target=truffle-v5 './build/contracts/*.json'",
-    "postinstall": "truffle compile && npm run generate-types"
+    "migrate": "truffle migrate",
+    "postinstall": "truffle compile && npm run generate-types",
+    "test": "truffle test"
   },
   "keywords": [],
   "author": "",

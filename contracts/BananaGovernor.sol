@@ -1,9 +1,15 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/governance/Governor.sol";
+import "./IGetVotes.sol";
 
 contract BananaGovernor is Governor {   
-    constructor() Governor("BananaGovernor") {}
+
+    IGetVotes public erc20Token;
+    
+    constructor(address _erc20TokenAddress) Governor("BananaGovernor") {
+        erc20Token = IGetVotes(_erc20TokenAddress);
+    }
     
     /**
      * @notice module:user-config
@@ -22,7 +28,7 @@ contract BananaGovernor is Governor {
      */
     function _quorumReached(uint256 proposalId) internal override view virtual returns (bool) {
         // TODO: implement
-        return proposalId > 0;
+        return true;
     }
 
     /**
@@ -30,7 +36,7 @@ contract BananaGovernor is Governor {
      */
     function _voteSucceeded(uint256 proposalId) internal override view virtual returns (bool) {
         // TODO: implement
-        return proposalId > 0;
+        return true;
     }
 
     /**
@@ -53,9 +59,7 @@ contract BananaGovernor is Governor {
      * multiple), {ERC20Votes} tokens.
      */
     function getVotes(address account, uint256 blockNumber) public override view virtual returns (uint256) {
-        // TODO: implement
-        require(account!=address(0));
-        return blockNumber;
+        return erc20Token.getPriorVotes(account, blockNumber);
     }
 
     /**
